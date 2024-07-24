@@ -84,12 +84,12 @@
 			{:else}
 				<Dialog.Root>
 					<Dialog.Trigger>
-						<Button class="bg-[#0071e3] drop-shadow-sm hover:bg-neutral-900 text-lg p-4 rounded-lg">
+						<Button class="max-sm:px-2 max-sm:h-9" type="button" disabled={cart.length === 0}>
 							{cart.length > 0
 								? `Check Out (${cart.length} item${cart.length == 1 ? '' : 's'})`
 								: 'Please pick an item first'}
-						</Button></Dialog.Trigger
-					>
+						</Button>
+					</Dialog.Trigger>
 					<Dialog.Content class="sm:max-w-[425px]">
 						<Dialog.Header>
 							<Dialog.Title>Account</Dialog.Title>
@@ -105,11 +105,8 @@
 						>
 							<Button type="submit" class="w-full">Continue as guest</Button>
 						</form>
-						<Button
-							type="button"
-							on:click={() => goto('/auth/login')}
-							class="w-full"
-							variant="outline">Create account</Button
+						<Button type="button" on:click={() => goto('/login')} class="w-full" variant="outline"
+							>Create account</Button
 						>
 					</Dialog.Content>
 				</Dialog.Root>
