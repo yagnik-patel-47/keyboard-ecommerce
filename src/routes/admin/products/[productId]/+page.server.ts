@@ -38,8 +38,23 @@ export const load = async ({ params }) => {
 		});
 	}
 
+	const { images, subcategory, category, updatedAt, createdAt, ...restProduct } = product;
+
 	return {
-		form: await superValidate(zod(updateProductSchema)),
+		form: await superValidate(zod(updateProductSchema), {
+			defaults: {
+				name: product.name,
+				slug: product.slug,
+				description: product.description,
+				specifications: product.specifications,
+				addDetails: product.addDetails,
+				status: product.status ?? 'draft',
+				variants: product.variants,
+				newVariants: [],
+				categoryId: product.categoryId!,
+				subcategoryId: product.subcategoryId
+			}
+		}),
 		product,
 		allCategories
 	};

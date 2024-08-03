@@ -7,7 +7,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { goto } from '$app/navigation';
-	import { Plus, Minus, Delete, Trash, Trash2 } from 'lucide-svelte';
+	import { Plus, Minus, Trash2 } from 'lucide-svelte';
 	import ViewTransition from '$lib/components/view-transition.svelte';
 	import { Separator } from '$lib/components/ui/separator';
 

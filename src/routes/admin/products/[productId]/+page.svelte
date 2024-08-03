@@ -27,17 +27,6 @@
 
 	const { form: formData, enhance } = form;
 
-	$formData.name = data.product.name;
-	$formData.slug = data.product.slug;
-	$formData.description = data.product.description;
-	$formData.specifications = data.product.specifications;
-	$formData.addDetails = data.product.addDetails;
-	$formData.status = data.product.status!;
-	$formData.variants = data.product.variants;
-	$formData.newVariants = [];
-	$formData.categoryId = data.product.categoryId!;
-	$formData.subcategoryId = data.product.subcategoryId;
-
 	function addVariant() {
 		$formData.newVariants = [
 			...$formData.newVariants,
