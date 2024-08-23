@@ -7,6 +7,8 @@
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import * as Table from '$lib/components/ui/table';
 	import { getHeightFromAspect } from '$lib/utils.js';
+	import { SlidersHorizontal } from 'lucide-svelte';
+	import * as Sheet from '$lib/components/ui/sheet';
 
 	export let data;
 </script>
@@ -18,9 +20,26 @@
 <div class="mt-12">
 	{#if data.products.length}
 		<Card.Root>
-			<Card.Header>
-				<Card.Title>Products</Card.Title>
-				<Card.Description>Manage your products and view their sales performance.</Card.Description>
+			<Card.Header class="flex-row justify-between items-start">
+				<div class="grid gap-2">
+					<Card.Title>Products</Card.Title>
+					<Card.Description>Manage your products and view their sales performance.</Card.Description
+					>
+				</div>
+				<Sheet.Root>
+					<Sheet.Trigger>
+						<Button variant="outline">
+							<SlidersHorizontal class="size-4" />
+							<span class="ml-2">Filter</span></Button
+						>
+					</Sheet.Trigger>
+					<Sheet.Content>
+						<Sheet.Header>
+							<Sheet.Title>Apply filters.</Sheet.Title>
+						</Sheet.Header>
+						<div class="space-y-2"></div>
+					</Sheet.Content>
+				</Sheet.Root>
 			</Card.Header>
 			<Card.Content>
 				<Table.Root>
@@ -45,7 +64,7 @@
 								<Table.Cell class="hidden sm:table-cell">
 									{#if product.images.length}
 										<CldImage
-											class="rounded-lg"
+											class="rounded-lg object-cover"
 											width={64}
 											height={getHeightFromAspect(
 												product.images.filter((i) => i.isPrimary)[0].aspect,
@@ -95,7 +114,7 @@
 			</Card.Content>
 			<Card.Footer>
 				<div class="text-xs text-muted-foreground">
-					Showing <strong>1-10</strong> of <strong>32</strong> products
+					Showing <strong>1-10</strong> of <strong>10</strong> products
 				</div>
 			</Card.Footer>
 		</Card.Root>

@@ -6,7 +6,7 @@ import {
 	productVariants,
 	subcategories
 } from '$lib/server/db/schema';
-import { and, asc, desc, eq, inArray, sql } from 'drizzle-orm';
+import { and, eq, inArray, sql } from 'drizzle-orm';
 
 export const load = async (event) => {
 	const categorySlug = event.params.slug;

@@ -4,6 +4,7 @@
 	import { schema } from './schema';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
+	import { Textarea } from '$lib/components/ui/textarea';
 
 	export let data;
 
@@ -11,8 +12,6 @@
 		validators: zodClient(schema)
 	});
 	const { form: formData, enhance } = form;
-
-	data.category && formData.set(data.category);
 </script>
 
 <h1 class="text-3xl font-semibold">Edit "{data.category?.name}" category</h1>
@@ -31,6 +30,14 @@
 			<Input class="max-w-xl" {...attrs} bind:value={$formData.slug} />
 		</Form.Control>
 		<Form.Description>This will be used in urls.</Form.Description>
+		<Form.FieldErrors />
+	</Form.Field>
+	<Form.Field {form} name="description">
+		<Form.Control let:attrs>
+			<Form.Label>Description</Form.Label>
+			<Textarea class="max-w-xl" {...attrs} bind:value={$formData.description} />
+		</Form.Control>
+		<Form.Description>This is category description which will be displayed.</Form.Description>
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Button>Submit</Form.Button>

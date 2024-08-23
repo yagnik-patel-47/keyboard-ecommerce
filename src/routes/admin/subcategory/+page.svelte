@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { invalidateAll, pushState } from '$app/navigation';
+	import { pushState } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
 	import { Card, CardTitle, CardDescription, CardHeader } from '$lib/components/ui/card';
 	import * as Dialog from '$lib/components/ui/dialog';
@@ -13,7 +13,6 @@
 	import { updateSubcategorySchema } from './schema.js';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { applyAction, deserialize } from '$app/forms';
 	import { mediaQuery } from 'svelte-legos';
 
 	export let data;
@@ -35,24 +34,6 @@
 		pushState('', {
 			subcategory: subc
 		});
-	}
-
-	async function handleSubmit(event: { currentTarget: EventTarget & HTMLFormElement }) {
-		const data = new FormData(event.currentTarget);
-
-		const response = await fetch(event.currentTarget.action, {
-			method: 'POST',
-			body: data
-		});
-
-		const result = deserialize(await response.text());
-
-		if (result.type === 'success') {
-			// rerun all `load` functions, following the successful update
-			await invalidateAll();
-		}
-
-		applyAction(result);
 	}
 </script>
 

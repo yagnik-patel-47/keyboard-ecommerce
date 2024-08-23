@@ -11,7 +11,9 @@ export const load = async (event) => {
 		where: eq(categories.slug, event.params.slug)
 	});
 	return {
-		form: await superValidate(zod(schema)),
+		form: await superValidate(zod(schema), category && {
+			defaults: category
+		}),
 		category
 	};
 };
